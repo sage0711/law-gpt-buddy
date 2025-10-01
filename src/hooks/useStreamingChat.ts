@@ -48,6 +48,7 @@ export const useStreamingChat = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Accept: "text/event-stream",
             Authorization: `Bearer ${
               session?.access_token ||
               import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY
@@ -62,8 +63,24 @@ export const useStreamingChat = () => {
         });
       }
 
-      if (!response.ok || !response.body) {
-        throw new Error("Failed to start stream");
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("API Error:", response.status, errorText);
+
+        // Try to parse error details
+        let errorDetails = errorText;
+        try {
+          const errorJson = JSON.parse(errorText);
+          errorDetails = errorJson.openaiError || errorJson.error || errorText;
+        } catch (e) {
+          // If parsing fails, use the raw error text
+        }
+
+        throw new Error(`API Error: ${response.status} - ${errorDetails}`);
+      }
+
+      if (!response.body) {
+        throw new Error("No response body received");
       }
 
       const reader = response.body.getReader();
