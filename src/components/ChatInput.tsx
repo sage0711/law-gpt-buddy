@@ -26,21 +26,21 @@ const ChatInput = ({ onSend, disabled }: ChatInputProps) => {
   };
 
   return (
-    <div className="border-t border-border bg-card p-3">
+    <div className="border-t border-border bg-card px-3 py-2">
       <div className="max-w-4xl mx-auto flex gap-2 items-end">
         <Textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder="Ask about personal injury law in Canada..."
-          className="min-h-[44px] max-h-[200px] resize-none rounded-xl border-border focus-visible:ring-primary py-2"
+          className="min-h-[38px] max-h-[150px] resize-none rounded-lg border-border focus-visible:ring-primary text-sm py-1.5 px-3"
           disabled={disabled}
         />
         <Button
           onClick={handleSubmit}
           disabled={disabled || !input.trim()}
           size="icon"
-          className="h-[44px] w-[44px] rounded-xl bg-primary hover:bg-primary/90 transition-all shadow-md hover:shadow-lg disabled:opacity-50 flex-shrink-0"
+          className="h-[38px] w-[38px] rounded-lg bg-primary hover:bg-primary/90 transition-all disabled:opacity-50 flex-shrink-0"
         >
           <Send className="h-4 w-4" />
         </Button>
