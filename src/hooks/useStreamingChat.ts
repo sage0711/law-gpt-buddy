@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { localChatAPI } from "@/api/chat";
 
@@ -11,8 +11,30 @@ export const useStreamingChat = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Load messages from localStorage on mount
+  useEffect(() => {
+    const savedMessages = localStorage.getItem("currentConversation");
+    if (savedMessages) {
+      try {
+        setMessages(JSON.parse(savedMessages));
+      } catch (error) {
+        console.error("Failed to load saved messages:", error);
+      }
+    }
+  }, []);
+
+  // Save messages to localStorage whenever they change
+  useEffect(() => {
+    if (messages.length > 0) {
+      localStorage.setItem("currentConversation", JSON.stringify(messages));
+    } else {
+      localStorage.removeItem("currentConversation");
+    }
+  }, [messages]);
+
   const clearMessages = () => {
     setMessages([]);
+    localStorage.removeItem("currentConversation");
   };
 
   const sendMessage = async (content: string) => {

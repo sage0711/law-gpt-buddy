@@ -72,22 +72,21 @@ const ModernDisclaimer = ({
   }
 
   const disclaimerContent = (
-    <div className="flex items-start gap-4">
-      <div className="flex-shrink-0 mt-1">
-        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg">
-          <AlertCircle className="h-4 w-4 text-white" />
+    <div className="flex items-start gap-2">
+      <div className="flex-shrink-0 mt-0.5">
+        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow">
+          <AlertCircle className="h-3 w-3 text-white" />
         </div>
       </div>
       <div className="flex-1">
-        <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+        <p className="text-xs leading-relaxed text-gray-700 dark:text-gray-300">
           <strong className="text-gray-900 dark:text-gray-100 font-semibold">
             Legal Disclaimer:
           </strong>{" "}
           This AI assistant provides general information about Canadian personal
           injury law and should not be considered legal advice. For specific
           legal guidance regarding your case, please consult with a qualified
-          personal injury lawyer in your province. Information provided may not
-          reflect the most recent legal developments.
+          personal injury lawyer in your province.
         </p>
       </div>
       <Button
@@ -95,13 +94,13 @@ const ModernDisclaimer = ({
         size="sm"
         onClick={handleDismiss}
         className={cn(
-          "h-8 w-8 p-0 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-all duration-200",
+          "h-6 w-6 p-0 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-all duration-200",
           "hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full",
           isAnimating && "opacity-0 scale-95"
         )}
         title="Dismiss disclaimer"
       >
-        <X className="h-4 w-4" />
+        <X className="h-3 w-3" />
       </Button>
     </div>
   );
@@ -150,7 +149,7 @@ const ModernDisclaimer = ({
     );
   }
 
-  // Default footer variant
+  // Default footer variant - Compact version
   return (
     <footer
       className={cn(
@@ -162,7 +161,7 @@ const ModernDisclaimer = ({
         className
       )}
     >
-      <div className="max-w-5xl mx-auto px-6 py-4">{disclaimerContent}</div>
+      <div className="max-w-5xl mx-auto px-4 py-2">{disclaimerContent}</div>
     </footer>
   );
 };
