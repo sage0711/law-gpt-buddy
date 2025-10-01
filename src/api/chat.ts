@@ -7,7 +7,7 @@ export async function localChatAPI(messages: any[], apiKey: string) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      model: "gpt-3.5-turbo-0125", // Using latest gpt-3.5-turbo for better compatibility and lower cost
+          model: "gpt-4", // Using GPT-4 for best performance (most advanced available model)
       messages: [
         {
           role: "system",
@@ -32,7 +32,7 @@ Important guidelines:
         ...messages,
       ],
       stream: true,
-      max_completion_tokens: 1000, // Reduced to save on costs
+          max_completion_tokens: 2000, // Increased for better responses with GPT-4
     }),
   });
 

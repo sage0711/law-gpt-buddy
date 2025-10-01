@@ -21,7 +21,7 @@ export const useStreamingChat = () => {
     setIsLoading(true);
 
     try {
-      // Use local API if OpenAI key is available, otherwise use Supabase
+      // Use local API since we've fixed the environment variable
       const isLocalDev = !!import.meta.env.VITE_OPENAI_API_KEY;
 
       let response;
