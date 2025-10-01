@@ -7,7 +7,7 @@ export async function localChatAPI(messages: any[], apiKey: string) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      model: "gpt-4",
+      model: "gpt-3.5-turbo", // Using gpt-3.5-turbo for better compatibility
       messages: [
         {
           role: "system",
@@ -37,7 +37,9 @@ Important guidelines:
   });
 
   if (!response.ok) {
-    throw new Error(`OpenAI API error: ${response.status}`);
+    const errorText = await response.text();
+    console.error("OpenAI API error:", response.status, errorText);
+    throw new Error(`OpenAI API error: ${response.status} - ${errorText}`);
   }
 
   return response;
