@@ -1,0 +1,10 @@
+{
+  "env": {
+    "VITE_OPENAI_API_KEY": "@vite_openai_api_key"
+  },
+  "build": {
+    "env": {
+      "VITE_OPENAI_API_KEY": "@vite_openai_api_key"
+    }
+  }
+}

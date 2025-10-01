@@ -1,4 +1,4 @@
-// Local development API route for chat functionality
+// Local/production API route for chat functionality
 export async function localChatAPI(messages: any[], apiKey: string) {
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
@@ -39,7 +39,21 @@ Important guidelines:
   if (!response.ok) {
     const errorText = await response.text();
     console.error("OpenAI API error:", response.status, errorText);
-    throw new Error(`OpenAI API error: ${response.status} - ${errorText}`);
+
+    // Parse error details for better debugging
+    let errorMessage = `OpenAI API error: ${response.status}`;
+    try {
+      const errorJson = JSON.parse(errorText);
+      if (errorJson.error?.message) {
+        errorMessage += ` - ${errorJson.error.message}`;
+      } else {
+        errorMessage += ` - ${errorText}`;
+      }
+    } catch (e) {
+      errorMessage += ` - ${errorText}`;
+    }
+
+    throw new Error(errorMessage);
   }
 
   return response;
