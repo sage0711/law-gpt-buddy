@@ -26,24 +26,31 @@ const ChatInput = ({ onSend, disabled }: ChatInputProps) => {
   };
 
   return (
-    <div className="border-t border-border bg-card px-3 py-2">
-      <div className="max-w-4xl mx-auto flex gap-2 items-end">
-        <Textarea
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-          placeholder="Ask about personal injury law in Canada..."
-          className="min-h-[38px] max-h-[150px] resize-none rounded-lg border-border focus-visible:ring-primary text-sm py-1.5 px-3"
-          disabled={disabled}
-        />
-        <Button
-          onClick={handleSubmit}
-          disabled={disabled || !input.trim()}
-          size="icon"
-          className="h-[38px] w-[38px] rounded-lg bg-primary hover:bg-primary/90 transition-all disabled:opacity-50 flex-shrink-0"
-        >
-          <Send className="h-4 w-4" />
-        </Button>
+    <div className="border-t border-border bg-card px-2 py-1">
+      <div className="max-w-3xl mx-auto">
+        <div className="flex gap-1 items-center">
+          <Textarea
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder="Ask about personal injury law in Canada..."
+            className="min-h-[32px] max-h-[100px] resize-none rounded border-border focus-visible:ring-1 focus-visible:ring-primary text-xs py-1 px-2 leading-tight"
+            disabled={disabled}
+          />
+          <Button
+            onClick={handleSubmit}
+            disabled={disabled || !input.trim()}
+            size="icon"
+            className="h-[32px] w-[32px] rounded bg-primary hover:bg-primary/90 disabled:opacity-50 flex-shrink-0"
+          >
+            <Send className="h-3 w-3" />
+          </Button>
+        </div>
+        <div className="text-center mt-0.5">
+          <span className="text-[9px] text-muted-foreground/70">
+            Enter to send • Shift+Enter for new line
+          </span>
+        </div>
       </div>
     </div>
   );
